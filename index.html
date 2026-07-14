@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PoE Countdown</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+      }
+      .countdownWrapper {
+        position: relative;
+        width: 920px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url("https://web.poecdn.com/public/news/2026-07-03/timer.jpg?v=2")
+          no-repeat center center/cover;
+      }
+      .countdown {
+        position: absolute;
+        width: 299px;
+        height: 30px;
+        bottom: 45px;
+        color: #fafeff;
+        display: flex;
+        font-size: 23px;
+        line-height: 28px;
+        text-align: center;
+      }
+      .countdown div {
+        transform: scale(1);
+        position: absolute;
+        width: 53px;
+        height: 29px;
+      }
+      .countdown div span {
+        display: block;
+      }
+      @keyframes timerTick {
+        0% {
+          color: #ff0000;
+        }
+        100% {
+          color: #fafeff;
+        }
+      }
+      .cooldown,
+      .animate {
+        animation: timerTick 1s infinite;
+      }
+      .days {
+        left: 0;
+      }
+      .hours {
+        left: 82px;
+      }
+      .minutes {
+        left: 162px;
+      }
+      .seconds {
+        left: 243px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="countdownWrapper">
+      <div class="countdown">
+        <div class="days"><span>0</span></div>
+        <div class="hours"><span>0</span></div>
+        <div class="minutes"><span>0</span></div>
+        <div class="seconds"><span>0</span></div>
+      </div>
+    </div>
+    <script>
+      const timeNow = new Date().getTime() + 10000;
+      const event = new Event("change", { bubbles: true });
+      const elements = {
+        days: document.querySelector(".days span"),
+        hours: document.querySelector(".hours span"),
+        minutes: document.querySelector(".minutes span"),
+        seconds: document.querySelector(".seconds span"),
+      };
+
+      Object.keys(elements).forEach((unit) => {
+        elements[unit].addEventListener("change", () => {
+          elements[unit].parentElement.classList.add("animate");
+          setTimeout(() => {
+            elements[unit].parentElement.classList.remove("animate");
+          }, 900);
+        });
+      });
+
+      const updateCountdown = () => {
+        const countDownTime = new Date("July 16, 2026 13:00:02 PDT").getTime();
+        const timeLeft = countDownTime - Date.now();
+
+        if (timeLeft < 0) {
+          clearInterval(countdownTimer);
+          Object.keys(elements).forEach((unit) => {
+            elements[unit].innerText = 0;
+            elements[unit].parentElement.classList.add("animate");
+          });
+          return;
+        }
+
+        const timeUnits = {
+          days: Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          ),
+          minutes: Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((timeLeft % (1000 * 60)) / 1000),
+        };
+
+        Object.keys(elements).forEach((unit) => {
+          if (timeUnits[unit] != elements[unit].innerText) {
+            elements[unit].dispatchEvent(event);
+          }
+          elements[unit].innerText = timeUnits[unit];
+        });
+      };
+
+      const countdownTimer = setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
