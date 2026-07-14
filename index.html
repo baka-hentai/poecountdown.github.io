@@ -9,7 +9,16 @@
         background-color: black;
         color: white;
         margin: 0;
-        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-family: FontinRegular, Verdana, Arial, Helvetica, sans-serif;
+      }
+      @font-face {
+        font-family: FontinRegular;
+        font-weight: 400;
+        font-style: normal;
+        src:
+          local("☺"),
+          url("https://web.poecdn.com/font/fontin-regular-webfont.woff")
+            format("woff");
       }
       .countdownWrapper {
         position: relative;
@@ -43,7 +52,7 @@
       }
       @keyframes timerTick {
         0% {
-          color: #ff0000;
+          color: #f56b46;
         }
         100% {
           color: #fafeff;
