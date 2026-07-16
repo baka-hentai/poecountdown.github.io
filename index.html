@@ -20,13 +20,13 @@
           url("./fontin-regular-webfont.woff") format("woff");
       }
       .countdownWrapper {
-        position: relative;
+        position: absolute;
         width: 510px;
-        height: 142px;
+        height: 83px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: url("./pcandconsolesmalltimer.webp") no-repeat center top;
+        background: url("./smalltimer.webp") no-repeat center top;
       }
       .countdown {
         position: absolute;
@@ -59,12 +59,6 @@
       .cooldown,
       .animate {
         animation: timerTick 1s infinite;
-      }
-      .days,
-      .hours,
-      .minutes,
-      .seconds {
-        top: -14px;
       }
       .days {
         left: 0;
