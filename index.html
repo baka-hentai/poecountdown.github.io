@@ -112,6 +112,7 @@
           clearInterval(countdownTimer);
           Object.keys(elements).forEach((unit) => {
             elements[unit].innerText = 0;
+            elements[unit].parentElement.classList.remove("animate");
             elements[unit].parentElement.classList.add("animate");
           });
           return;
