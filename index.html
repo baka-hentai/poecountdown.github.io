@@ -17,18 +17,16 @@
         font-style: normal;
         src:
           local("☺"),
-          url("https://web.poecdn.com/font/fontin-regular-webfont.woff")
-            format("woff");
+          url("./fontin-regular-webfont.woff") format("woff");
       }
       .countdownWrapper {
         position: relative;
-        width: 920px;
-        height: 250px;
+        width: 510px;
+        height: 142px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: url("https://web.poecdn.com/protected/image/promo/allflame/timer/timer.jpg?v=2&key=rCZ-BkFialcpuNCeBNxncg")
-          no-repeat center center/cover;
+        background: url("./pcandconsolesmalltimer.webp") no-repeat center top;
       }
       .countdown {
         position: absolute;
@@ -61,6 +59,12 @@
       .cooldown,
       .animate {
         animation: timerTick 1s infinite;
+      }
+      .days,
+      .hours,
+      .minutes,
+      .seconds {
+        top: -14px;
       }
       .days {
         left: 0;
